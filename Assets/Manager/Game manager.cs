@@ -1,16 +1,20 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.MemoryProfiler;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Android;
+
 
 public class Gamemanager : MonoBehaviour
 {
     public enum GameState {PAUSE,GAMEPLAY};
     public GameState state;
 
-    bool haschangedstate = true;
 
+    bool haschangedstate = true;
+    
 
 
 
@@ -44,7 +48,7 @@ public class Gamemanager : MonoBehaviour
             }
      
         }
-        print(Time.timeScale);
+        
         
         
 
