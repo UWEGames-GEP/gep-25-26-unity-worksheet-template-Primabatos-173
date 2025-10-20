@@ -22,15 +22,16 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(manager.state == GameState.GAMEPLAY)
+       
+        //if(manager.state == GameState.GAMEPLAY)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            //if (Input.GetKeyDown(KeyCode.Q))
             {
-                Additem("item added");
+                //Additem("item added");
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            //if (Input.GetKeyDown(KeyCode.E))
             {
-                Removeitem("item added");
+                //Removeitem("item added");
             }
         }
         
@@ -44,5 +45,18 @@ public class Inventory : MonoBehaviour
     public void Removeitem(string itemName)
     {
         items.Remove(itemName);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        item collisionItem = hit.gameObject.GetComponent<item>();
+
+        if (collisionItem != null)
+        {
+            items.Add(collisionItem.name);
+        }
+
+        Destroy(collisionItem.gameObject);
+
     }
 }
