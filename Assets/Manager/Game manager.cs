@@ -31,23 +31,30 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(state == GameState.GAMEPLAY)
+       switch(state)
         {
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                state = GameState.PAUSE;
-                haschangedstate = true;
-            }
+            case GameState.GAMEPLAY:
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    state = GameState.PAUSE;
+                    haschangedstate = true;
+                }
+
+                break;
+
+            case GameState.PAUSE:
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    state = GameState.GAMEPLAY;
+                    haschangedstate = true;
+                }
+                break;
+            default:
+                break;
         }
-        else if(state == GameState.PAUSE)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                state = GameState.GAMEPLAY;
-                haschangedstate = true;
-            }
-     
-        }
+
+
+        
         
         
         
@@ -60,16 +67,21 @@ public class Gamemanager : MonoBehaviour
 
         if (haschangedstate)
         {
+            switch (state)
+            {
+                case GameState.PAUSE:
+                    Time.timeScale = 0.0f;
+                    break;
+                case GameState.GAMEPLAY:
+                    Time.timeScale = 1.0f;
+                    break;
+                default:
+                    Time.timeScale = 1.0f;
+                    break;
+            }
             haschangedstate = false;
 
-            if (state == GameState.GAMEPLAY)
-            {
-                Time.timeScale = 1.0f;
-            }
-            else if (state == GameState.PAUSE)
-            {
-                Time.timeScale = 0.0f;
-            }
+            
         }
     }
 }
