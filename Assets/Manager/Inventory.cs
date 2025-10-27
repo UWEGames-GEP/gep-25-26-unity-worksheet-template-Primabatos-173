@@ -7,7 +7,7 @@ using static Gamemanager;
 
 public class Inventory : MonoBehaviour
 {
-    public List<string> items = new List<string>();
+   private List<string> items = new List<string>();
     public Gamemanager manager;
 
     
@@ -54,9 +54,11 @@ public class Inventory : MonoBehaviour
         if (collisionItem != null)
         {
             items.Add(collisionItem.name);
+            Destroy(collisionItem.gameObject);
         }
+        
 
-        Destroy(collisionItem.gameObject);
+        
 
     }
 }
