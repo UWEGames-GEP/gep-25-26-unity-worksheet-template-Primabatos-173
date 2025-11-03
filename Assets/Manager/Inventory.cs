@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void Additem(string itemName)
+    public void Additem(string itemName, string ball)
     {
         items.Add(itemName);
     }
