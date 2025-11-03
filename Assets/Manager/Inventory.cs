@@ -53,7 +53,7 @@ public class Inventory : MonoBehaviour
 
         if (collisionItem != null)
         {
-            items.Add(collisionItem.name);
+            items.Add(collisionItem.itemName);
             Destroy(collisionItem.gameObject);
         }
         
