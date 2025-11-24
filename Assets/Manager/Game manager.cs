@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.MemoryProfiler;
 using UnityEditor.Search;
@@ -29,37 +30,63 @@ public class Gamemanager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //   switch(state)
+    //    {
+    //        case GameState.GAMEPLAY:
+    //            if(Input.GetKeyDown(KeyCode.P))
+    //            {
+    //                state = GameState.PAUSE;
+    //                haschangedstate = true;
+    //            }
+
+    //            break;
+
+    //        case GameState.PAUSE:
+    //            if (Input.GetKeyDown(KeyCode.P))
+    //            {
+    //                state = GameState.GAMEPLAY;
+    //                haschangedstate = true;
+    //            }
+    //            break;
+    //        default:
+    //            break;
+    //    }
+
+
+        
+        
+        
+        
+
+    //}
+
+
+    public void Pausefunction()
     {
-       switch(state)
+        switch (state)
         {
             case GameState.GAMEPLAY:
-                if(Input.GetKeyDown(KeyCode.P))
-                {
-                    state = GameState.PAUSE;
-                    haschangedstate = true;
-                }
+                
+                state = GameState.PAUSE;
+                haschangedstate = true;
+                
 
                 break;
 
             case GameState.PAUSE:
-                if (Input.GetKeyDown(KeyCode.P))
-                {
-                    state = GameState.GAMEPLAY;
-                    haschangedstate = true;
-                }
+                
+               state = GameState.GAMEPLAY;
+               haschangedstate = true;
+                
                 break;
             default:
                 break;
         }
-
-
         
-        
-        
-        
-
     }
+
     private void LateUpdate()
     {
        

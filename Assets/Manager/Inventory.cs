@@ -5,9 +5,13 @@ using UnityEditor.Search;
 using UnityEngine;
 using static Gamemanager;
 
+
 public class Inventory : MonoBehaviour
 {
-   private List<string> items = new List<string>();
+    Gamemanager gameManager;
+    Transform worldItemsTransform;
+
+    private List<Item> items = new List<Item>();
     public Gamemanager manager;
 
     
@@ -17,6 +21,8 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         manager = FindAnyObjectByType<Gamemanager>();
+
+        Transform worldItemsTransform = GameObject.Find("items").transform;
     }
 
     // Update is called once per frame
@@ -37,28 +43,53 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void Additem(string itemName, string ball)
-    {
-        items.Add(itemName);
-    }
-
-    public void Removeitem(string itemName)
-    {
-        items.Remove(itemName);
-    }
+    
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        item collisionItem = hit.gameObject.GetComponent<item>();
+        Item collisionItem = hit.gameObject.GetComponent<Item>();
 
         if (collisionItem != null)
         {
-            items.Add(collisionItem.itemName);
-            Destroy(collisionItem.gameObject);
+            items.Add(collisionItem);
+            collisionItem.gameObject.SetActive(false);
         }
         
 
-        
-
     }
+
+    public void AddItemToInventory(Item item)
+    {
+        items.Add(item);
+    }
+
+    public void RemoveItemToInventory()
+    {
+        if(manager.state == GameState.GAMEPLAY && items.Count > 0)
+        {
+            Item item = items[0];
+
+            Vector3 currentPossition = transform.position;
+            Vector3 forward = transform.forward;
+
+            Vector3 newposition = currentPossition + forward;
+            newposition += new Vector3(0, 1, 0);
+
+            Quaternion currentRotation = transform.rotation;
+            Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, 180);
+
+            GameObject newItem = Instantiate(item.gameObject, newposition, newRotation, worldItemsTransform);
+            newItem.SetActive(true);
+
+            items.Remove(item);
+            Destroy(item.gameObject);
+        }
+
+
+
+
+
+        
+    }
+
 }

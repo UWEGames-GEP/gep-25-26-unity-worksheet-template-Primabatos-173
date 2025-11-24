@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ball : item
+public class ball : Item
 {
 
     public string balltype;
