@@ -12,7 +12,7 @@ public class Gamemanager : MonoBehaviour
 {
     public enum GameState {PAUSE,GAMEPLAY};
     public GameState state;
-
+    public GameObject Inventory_menu;
 
     bool haschangedstate = true;
     
@@ -68,17 +68,21 @@ public class Gamemanager : MonoBehaviour
         switch (state)
         {
             case GameState.GAMEPLAY:
-                
+
+                Cursor.lockState = CursorLockMode.None;
                 state = GameState.PAUSE;
+                Inventory_menu.SetActive(true);
                 haschangedstate = true;
                 
 
                 break;
 
             case GameState.PAUSE:
-                
+
+                Cursor.lockState = CursorLockMode.Locked;
                state = GameState.GAMEPLAY;
-               haschangedstate = true;
+                Inventory_menu.SetActive(false);
+                haschangedstate = true;
                 
                 break;
             default:
@@ -111,6 +115,10 @@ public class Gamemanager : MonoBehaviour
             
         }
     }
+
+
+
+
 }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 

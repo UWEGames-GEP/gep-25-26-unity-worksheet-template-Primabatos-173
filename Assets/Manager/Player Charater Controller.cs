@@ -9,7 +9,7 @@ public class PlayerCharacterController : ThirdPersonController
 
     private void OnPause(InputValue value)
     {
-        //press ESC
+        //press E
         if (value.isPressed)
         {
             Debug.Log("pause");
@@ -24,7 +24,7 @@ public class PlayerCharacterController : ThirdPersonController
         if(value.isPressed)
         {
             Debug.Log("drop item");
-            GetComponent<Inventory>().RemoveItemToInventory();
+           
         }
     }
 

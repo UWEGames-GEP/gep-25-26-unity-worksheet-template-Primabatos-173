@@ -240,7 +240,7 @@
                 {
                     "name": "",
                     "id": "4f7c4208-4add-4ea9-8af4-621e0f80fd97",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",

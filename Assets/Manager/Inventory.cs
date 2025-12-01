@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     Gamemanager gameManager;
     Transform worldItemsTransform;
 
-    private List<Item> items = new List<Item>();
+    public List<Item> items = new List<Item>();
     public Gamemanager manager;
 
     
@@ -63,33 +63,45 @@ public class Inventory : MonoBehaviour
         items.Add(item);
     }
 
-    public void RemoveItemToInventory()
+    public void RemoveItemFromInventory(Item item)
     {
-        if(manager.state == GameState.GAMEPLAY && items.Count > 0)
+        Vector3 currentPossition = transform.position;
+        Vector3 forward = transform.forward;
+
+        Vector3 newposition = currentPossition + forward;
+        newposition += new Vector3(0, 1, 0);
+
+        Quaternion currentRotation = transform.rotation;
+        Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, 180);
+
+        GameObject newItem = Instantiate(item.gameObject, newposition, newRotation, worldItemsTransform);
+        newItem.SetActive(true);
+
+        //delete the existing item
+        items.Remove(item);
+        Destroy(item.gameObject);
+
+    }
+
+    public void RemoveItemFromInventory()
+    {
+        // check if we can remove item from inventory
+        if (manager.state == GameState.GAMEPLAY && items.Count > 0)
         {
             Item item = items[0];
 
-            Vector3 currentPossition = transform.position;
-            Vector3 forward = transform.forward;
-
-            Vector3 newposition = currentPossition + forward;
-            newposition += new Vector3(0, 1, 0);
-
-            Quaternion currentRotation = transform.rotation;
-            Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, 180);
-
-            GameObject newItem = Instantiate(item.gameObject, newposition, newRotation, worldItemsTransform);
-            newItem.SetActive(true);
-
-            items.Remove(item);
-            Destroy(item.gameObject);
+            RemoveItemFromInventory(item);
         }
-
-
-
-
-
-        
+           
     }
 
+    public void RemoveItemFromInventory(int i)
+    {
+        if(i < items.Count)
+        {
+            RemoveItemFromInventory(items[i]);
+        }
+    }
+
+   
 }
