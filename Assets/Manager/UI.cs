@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     
     void RefreshInventory()
     {
+        //disable each inventory ui button's game object
         foreach (GameObject uiButton in inventoryUIButtons)
         {
             uiButton.SetActive(false);
@@ -23,6 +24,7 @@ public class UI : MonoBehaviour
         {
             if(i < inventoryUIButtons.Count)
             {
+                //create a reference to the ui buttons and items
                 UIButton uiButton = inventoryUIButtons[i].GetComponent<UIButton>();
                 Item item = inventory.items[i];
 

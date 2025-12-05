@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEditor.Search;
@@ -25,23 +26,8 @@ public class Inventory : MonoBehaviour
         Transform worldItemsTransform = GameObject.Find("items").transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-        //if(manager.state == GameState.GAMEPLAY)
-        {
-            //if (Input.GetKeyDown(KeyCode.Q))
-            {
-                //Additem("item added");
-            }
-            //if (Input.GetKeyDown(KeyCode.E))
-            {
-                //Removeitem("item added");
-            }
-        }
-        
-    }
+   
+   
 
     
 
@@ -78,8 +64,19 @@ public class Inventory : MonoBehaviour
         newItem.SetActive(true);
 
         //delete the existing item
-        items.Remove(item);
+
+        for(int i = 0; i < items.Count; i++)
+        {
+            if (items[i].itemName == item.itemName)
+            {
+               
+                items.RemoveAt(i);
+            }
+        }
+
+        
         Destroy(item.gameObject);
+       
 
     }
 
@@ -103,5 +100,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    
    
 }

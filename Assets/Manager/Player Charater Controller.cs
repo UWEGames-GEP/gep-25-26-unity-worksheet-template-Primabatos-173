@@ -12,7 +12,7 @@ public class PlayerCharacterController : ThirdPersonController
         //press E
         if (value.isPressed)
         {
-            Debug.Log("pause");
+            
             FindAnyObjectByType<Gamemanager>().Pausefunction();
 
         }
@@ -23,7 +23,7 @@ public class PlayerCharacterController : ThirdPersonController
         //press Q
         if(value.isPressed)
         {
-            Debug.Log("drop item");
+            
            
         }
     }
