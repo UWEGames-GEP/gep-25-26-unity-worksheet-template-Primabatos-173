@@ -13,6 +13,7 @@ public class Gamemanager : MonoBehaviour
     public enum GameState {PAUSE,GAMEPLAY};
     public GameState state;
     public GameObject Inventory_menu;
+    public GameObject Main_menu;
 
     bool haschangedstate = true;
     
@@ -71,7 +72,8 @@ public class Gamemanager : MonoBehaviour
 
                 Cursor.lockState = CursorLockMode.None;
                 state = GameState.PAUSE;
-                Inventory_menu.SetActive(true);
+                Main_menu.SetActive(true);
+                //Inventory_menu.SetActive(true);
                 haschangedstate = true;
                 
 
@@ -81,6 +83,7 @@ public class Gamemanager : MonoBehaviour
 
                 Cursor.lockState = CursorLockMode.Locked;
                state = GameState.GAMEPLAY;
+                Main_menu.SetActive(false);
                 Inventory_menu.SetActive(false);
                 haschangedstate = true;
                 
